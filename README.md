@@ -35,7 +35,7 @@ Projekt jest obecnie w fazie rozszerzania o analizę sentymentu rynkowego:
 3.  **Model Hybrydowy:** Połączenie cech technicznych (OHLCV) z cechami tekstowymi (Sentiment Score).
 
 ## 🗂️ Struktura Plików
-* `Nvidia-Copy3 (1).ipynb` - Pełny kod: od pobrania danych, przez inżynierię cech, po backtesting i SHAP.
+* `Nvidia-ML.ipynb` - Pełny kod: od pobrania danych, przez inżynierię cech, po backtesting
 * `raportproejtkuML.pptx` - Synteza wyników i uzasadnienie biznesowe projektu.
 
 ---
