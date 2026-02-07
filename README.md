@@ -1,46 +1,41 @@
-# NVIDIA Stock Price Movement Prediction using Machine Learning
+# Predicting NVIDIA Stock Movements: A Machine Learning Approach
+### 📈 Project for Bachelor's Thesis Development | Quantitative Finance & AI
 
-[![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org/)
-[![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-Latest-orange)](https://scikit-learn.org/)
-[![XGBoost](https://img.shields.io/badge/XGBoost-Latest-green)](https://xgboost.ai/)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![ML Framework: Scikit-Learn](https://img.shields.io/badge/ML-Scikit--Learn-orange)](https://scikit-learn.org/)
+[![Optimization: Optuna](https://img.shields.io/badge/Optimization-Optuna-blueviolet)](https://optuna.org/)
 
-Projekt zrealizowany w ramach przedmiotu **Podstawy Sztucznej Inteligencji**, skupiający się na predykcji kierunku ruchu cen akcji spółki **NVIDIA (NVDA)**. System klasyfikuje ruchy rynkowe w 5-dniowym horyzoncie czasowym, wykorzystując zaawansowane metody inżynierii cech oraz algorytmy uczenia zespołowego.
+## 📖 Opis Projektu
+Projekt skupia się na predykcji kierunku ruchu cen akcji **NVIDIA (NVDA)** w 5-dniowym horyzoncie czasowym. Głównym celem było stworzenie systemu wspomagania decyzji inwestycyjnych, który wykracza poza proste regresje, stosując zaawansowane techniki inżynierii danych finansowych (Financial Data Science).
 
-## 🚀 Key Features
+Jest to projekt bazowy pod moją **pracę licencjacką**, w której badam efektywność modeli ML w konfrontacji z Hipotezą Rynku Efektywnego oraz wpływem czynników behawioralnych.
 
-* **Triple Barrier Method**: Nowoczesne podejście do etykietowania danych (zamiast prostych zwrotów logarytmicznych), uwzględniające dynamiczne poziomy *Take Profit* i *Stop Loss*.
-* **Multi-class Classification**: Klasyfikacja ruchu jako: Spadek (0), Neutralny (1), Wzrost (2).
-* **AutoML & Optimization**: Automatyczne strojenie hiperparametrów przy użyciu biblioteki **Optuna**.
-* **Explainable AI (XAI)**: Analiza istotności cech przy użyciu wartości **SHAP**, pozwalająca zrozumieć, co kieruje decyzjami modelu.
-* **Technical Analysis Integration**: Wykorzystanie biblioteki `TA-Lib` do generowania wskaźników (RSI, MACD, Bollinger Bands, ATR).
+## 🛠️ Stack Techniczny & Metodologia
+* **Modele:** XGBoost, Random Forest (zoptymalizowane pod kątem *Long Bias*).
+* **Etykietowanie:** **Triple Barrier Method** – zaawansowana metoda klasyfikacji uwzględniająca progi Take Profit, Stop Loss oraz barierę czasową.
+* **Optymalizacja:** Automatyczne strojenie hiperparametrów za pomocą **Optuna**.
+* **Walidacja:** `TimeSeriesSplit` (Cross-Validation dedykowana dla szeregów czasowych), zapobiegająca wyciekowi danych.
+* **Interpretowalność (XAI):** Wykorzystanie wartości **SHAP** do analizy wpływu poszczególnych wskaźników technicznych na decyzje modelu.
 
-## 📊 Methodology
+## 📊 Wyniki i Analiza Ryzyka
+W starciu z ogromną zmiennością spółki NVIDIA, modele wykazały się wyższą odpornością na spadki kapitału (drawdown) w porównaniu do strategii pasywnej.
 
-### Data Engineering
-Dane zostały pobrane za pomocą `yfinance`. W procesie przygotowania danych zaimplementowano:
-* Wskaźniki trendu, pędu oraz zmienności.
-* Lagowanie cech (Lags) w celu uchwycenia zależności czasowych.
-* Normalizację i obsługę brakujących danych specyficznych dla szeregów czasowych.
+| Metryka | Buy & Hold (B&H) | XGBoost (Active) | Random Forest |
+| :--- | :---: | :---: | :---: |
+| **Max Drawdown** | **-36.88%** | **-34.10%** | -36.88% |
+| **Skuteczność (3 klasy)** | ~33% (Benchmark) | **~38-40%** | ~36% |
 
-### Models
-W projekcie porównano dwa główne modele:
-1.  **Random Forest**: Klasyfikator bazowy, dobrze radzący sobie z szumem giełdowym.
-2.  **XGBoost**: Zaawansowany model gradient boostingu, zoptymalizowany pod kątem precyzji.
+> **Wniosek:** Model XGBoost pozwolił na ograniczenie maksymalnego obsunięcia kapitału o **2.78 punktu procentowego** względem strategii "Kup i Trzymaj", co w profesjonalnym tradingu jest istotną przewagą w zarządzaniu ryzykiem.
 
-### Validation Strategy
-Zastosowano **TimeSeriesSplit** (Cross-Validation dla szeregów czasowych), aby uniknąć wycieku danych (*data leakage*) i zapewnić rzetelną ocenę zdolności generalizacji modelu.
+## 🚀 Kierunki Rozwoju (Roadmap do Licencjatu)
+Projekt jest obecnie w fazie rozszerzania o analizę sentymentu rynkowego:
+1.  **Integracja FinBERT:** Zastosowanie modelu NLP wyspecjalizowanego w tekstach finansowych do analizy newsów i raportów giełdowych.
+2.  **Weryfikacja Hipotezy Shillera:** Badanie, czy emocje inwestorów (sentyment) mają silniejszą moc predykcyjną w krótkim terminie niż klasyczna analiza techniczna.
+3.  **Model Hybrydowy:** Połączenie cech technicznych (OHLCV) z cechami tekstowymi (Sentiment Score).
 
-## 📈 Results
+## 🗂️ Struktura Plików
+* `Nvidia-Copy3 (1).ipynb` - Pełny kod: od pobrania danych, przez inżynierię cech, po backtesting i SHAP.
+* `raportproejtkuML.pptx` - Synteza wyników i uzasadnienie biznesowe projektu.
 
-Modele osiągnęły skuteczność na poziomie **~38-40% Accuracy** (przy 3 zbalansowanych klasach i dużej losowości rynku NVDA), co stanowi istotną przewagę nad modelem losowym (33%).
-
-| Model | Max Drawdown | Risk Management |
-| :--- | :--- | :--- |
-| **Buy & Hold** | -36.88% | Brak |
-| **XGBoost Active** | -34.10% | Aktywne zarządzanie pozycją |
-
-## 🛠 Installation & Usage
-
-1. Sklonuj repozytorium:
-   ```bash
-   git clone [https://github.com/twoj-uzytkownik/nvidia-ml-prediction.git](https://github.com/twoj-uzytkownik/nvidia-ml-prediction.git)
+---
+**Autor:** Paweł Baczkowski  
