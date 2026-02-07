@@ -23,7 +23,8 @@ W starciu z ogromną zmiennością spółki NVIDIA, modele wykazały się wyższ
 | Metryka | Buy & Hold (B&H) | XGBoost (Active) | Random Forest |
 | :--- | :---: | :---: | :---: |
 | **Max Drawdown** | **-36.88%** | **-34.10%** | -36.88% |
-| **Skuteczność (3 klasy)** | ~33% (Benchmark) | **~38-40%** | ~36% |
+| **Skuteczność (3 klasy)** | ~33% (Benchmark) | **36** | ~38-40% |
+
 
 > **Wniosek:** Model XGBoost pozwolił na ograniczenie maksymalnego obsunięcia kapitału o **2.78 punktu procentowego** względem strategii "Kup i Trzymaj", co w profesjonalnym tradingu jest istotną przewagą w zarządzaniu ryzykiem.
 
